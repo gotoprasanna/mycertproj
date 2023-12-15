@@ -1,0 +1,9 @@
+FROM devopsedu/webapp
+RUN apt-get update
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y apache2
+RUN rm /var/www/html/*  
+ADD website /var/www/html
+EXPOSE 80
+WORKDIR /usr/sbin
+CMD ["apachectl", "-D", "FOREGROUND"]
